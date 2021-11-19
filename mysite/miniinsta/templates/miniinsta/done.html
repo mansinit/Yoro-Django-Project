@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Add Photo</h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_photo.as_p}}
+        <!--button type='button' name="add_photo">Add photos</button-->
+        <input type="submit" value="Add " name="add_photo">
+    </form>
+    {% for x in posts %}
+        {% if x.image %}
+            <img src = "{{ x.image  }}" alt="picture" width="200" height="200" />
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

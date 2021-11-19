@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            margin: 5;
+            padding: 5;
+        }
+    </style>
+</head>
+<body>
+{% load crispy_forms_tags %}
+
+<h3>Album Name</h3>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    {{new_category}}
+    <input type="submit" value="Submit" name="add_category">
+</form>
+<h3>Add categories </h3>
+
+<div class="container">
+    <ul>
+        {% for x in album_name %}
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-5 col-sm-12 border-bottom">
+               <li class="categories">
+                       
+                    <form method="POST" enctype="multipart/form-data" action={% url 'miniinsta:view_photo' x.album%}>
+                        {% csrf_token %}
+                        <!--button type='button' name="add_photo">Add photos</button-->
+                        <input type="submit" value={{x.album}} name="view_photo">
+                    </form>
+            </li> 
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
